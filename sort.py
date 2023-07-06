@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
-
+#
 """
     The approach taken is explained below. I decided to do it simply.
     Initially I was considering parsing the data into some sort of
