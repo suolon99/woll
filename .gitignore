@@ -7,7 +7,6 @@ Thumbs.db
 .vs/*
 log/
 obj/
-
 # APEX and OPS Files
 .migrationtemp
 .openpublishing.buildcore.ps1
