@@ -408,3 +408,23 @@ if __name__ == "__main__":
         else:
             runner = unittest.TextTestRunner()
             runner.run(suite)
+/**
+ * Converts a NotebookModel into VS Code format.
+ */
+export function jupyterNotebookModelToNotebookData(
+	notebookContent: Partial<nbformat.INotebookContent>,
+	preferredLanguage: string
+): NotebookData {
+	const notebookContentWithoutCells = { ...notebookContent, cells: [] };
+	if (!notebookContent.cells || notebookContent.cells.length === 0) {
+		throw new Error('Notebook content is missing cells');
+	}
+
+	const cells = notebookContent.cells
+		.map(cell => createNotebookCellDataFromJupyterCell(preferredLanguage, cell))
+		.filter((item): item is NotebookCellData => !!item);
+
+	const notebookData = new NotebookData(cells);
+	notebookData.metadata = { custom: notebookContentWithoutCells };
+	return notebookData;
+}
